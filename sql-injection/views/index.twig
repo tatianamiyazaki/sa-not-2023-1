@@ -1,9 +1,45 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
+  <style>
+    *{
+      font-family: Calibri, Arial, sans;
+    }
+
+    h1{
+      font-size: 30px;
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      width: 80%;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    label{
+      display: block;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    span{
+      display: block;
+    }
+
+    input{
+      font-siza: 22px;
+    }
+
+    div{
+      text-align: center;
+    }
+  </style>
+
   <h1>{{title}}</h1>
   
-  <form action="/user/login" method="POST">
+  <form action="/users/login" method="POST">
     
     <lable>
       <span>Usuário:</span>
