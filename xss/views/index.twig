@@ -39,12 +39,19 @@
   }, 1000)
 </script> #}
 
-<h1>Teste de XSS</h1>  
+<h1>Ataque XSS</h1>  
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, eius quos iusto cum aut ad fugiat autem ipsam eaque? Accusamus exercitationem alias commodi, voluptatem eos animi tempore numquam odit facilis.</p>
+<form method="POST" action="/comments">
+  <label>
+    <span>Comentários</span><br>
+    <textarea name="commnet" rows="4"></textarea>
+    <br>
+    <input type="submit" value="Enviar">
+  </label>
+</form>
 
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quos perferendis quam in illum sequi temporibus? Molestiae animi consequuntur odio debitis a cupiditate aliquid commodi? Alias ea dolor laboriosam possimus!</p>
-
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem molestiae est ea earum ratione architecto provident doloribus facere! Nisi doloremque aperiam quos veritatis hic delectus magni aut rem quaerat suscipit.</p>
+<div>
+  {{comments}}
+</div>
 
 {% endblock %}
