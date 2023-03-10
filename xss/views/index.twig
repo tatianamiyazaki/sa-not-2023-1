@@ -2,49 +2,12 @@
 
 {% block body %}
 
-{# <style>
-  .normal p, .normal h1 {
-    color: black;
-    background-color: white;
-  }
-  .invertido p, .invertido h1{
-    color: white;
-    background-color: black;
-  }
-</style> #}
-
-{# <script>
-  
-  setInterval(() => {
-    let estilo = document.body.className
-    estilo = estilo === 'normal' ? 'invertido' : 'normal'
-    document.body.className = estilo
-  }, 1000)
-
-</script> #}
-
-{# <script>
-  let normal = false
-  setInterval(() => {
-    const body = document.body
-    if(normal){
-      body.style.color = 'black'
-      body.style.backgroundColor = 'white'
-    }
-    else{
-      body.style.color = 'white'
-      body.style.backgroundColor = 'black'
-    }
-    normal = !normal
-  }, 1000)
-</script> #}
-
 <h1>Ataque XSS</h1>  
 
 <form method="POST" action="/comments">
   <label>
     <span>Comentários</span><br>
-    <textarea name="commnet" rows="4"></textarea>
+    <textarea name="comment" rows="4"></textarea>
     <br>
     <input type="submit" value="Enviar">
   </label>
