@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+{# <style>
+  .normal p, .normal h1 {
+    color: black;
+    background-color: white;
+  }
+  .invertido p, .invertido h1{
+    color: white;
+    background-color: black;
+  }
+</style> #}
+
+{# <script>
+  
+  setInterval(() => {
+    let estilo = document.body.className
+    estilo = estilo === 'normal' ? 'invertido' : 'normal'
+    document.body.className = estilo
+  }, 1000)
+
+</script> #}
+
+{# <script>
+  let normal = false
+  setInterval(() => {
+    const body = document.body
+    if(normal){
+      body.style.color = 'black'
+      body.style.backgroundColor = 'white'
+    }
+    else{
+      body.style.color = 'white'
+      body.style.backgroundColor = 'black'
+    }
+    normal = !normal
+  }, 1000)
+</script> #}
+
+<h1>Teste de XSS</h1>  
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, eius quos iusto cum aut ad fugiat autem ipsam eaque? Accusamus exercitationem alias commodi, voluptatem eos animi tempore numquam odit facilis.</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quos perferendis quam in illum sequi temporibus? Molestiae animi consequuntur odio debitis a cupiditate aliquid commodi? Alias ea dolor laboriosam possimus!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem molestiae est ea earum ratione architecto provident doloribus facere! Nisi doloremque aperiam quos veritatis hic delectus magni aut rem quaerat suscipit.</p>
+
+{% endblock %}
