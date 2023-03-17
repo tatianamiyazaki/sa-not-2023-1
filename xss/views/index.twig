@@ -4,8 +4,9 @@
 
 <h1>Ataque XSS</h1>  
 
-<form method="POST" action="/comments">
-  <label>
+<form method="GET" action="/comments">
+  <input type="hidden" name="secret" value="Informação que não deveria ser visível para o usuário">
+  <label>    
     <span>Comentários</span><br>
     <textarea name="comment" rows="4"></textarea>
     <br>
@@ -18,3 +19,5 @@
 </div>
 
 {% endblock %}
+
+{# método GET manda para a url os dados colocados no input #}
