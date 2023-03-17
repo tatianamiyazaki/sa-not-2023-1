@@ -1,0 +1,47 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{title}}</h1>
+  
+  <form method="POST" action="/users">
+    <label>
+        <span>Nome completo: </span>
+        <input name="fullname">
+    </label>
+    <br
+    <label>
+        <span>Nome de usuária</span>
+        <input name="username">
+    </label>
+    <br>
+    <label>
+        <span>Senha: </span>
+        <input type="password" id="password" name="password">
+    </label>
+    <br>
+    <label>
+        <span>Confirme a senha: </span>
+        <input type="password" id="password2">
+    </label>
+    <br>
+    <div>
+        <input type="submit" value="Enviar">
+    </div>
+  </form>
+
+  <script>
+
+    function checkPassword(){
+        const pass = document.querySelector('#password')
+        const pass2 = document.querySelector('#password2')
+
+        if (pass.value !== pass2.value){
+            alert ('A confirmação da senha não confere.')
+            pass2.focus()
+            event.preventDefault()
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', checkPassword)
+  </script>
+{% endblock %}
