@@ -16,18 +16,29 @@ const pgSession = require('connect-pg-simple')(expressSession)
 
 var app = express();
 
-app.use(expressSession({
+const sessionConfig = {
   store: new pgSession({
     pool: dbConn
   }),
+  name: '$DATA$',
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie:{
     maxAge : 7 * 24 * 60 * 100,  //7 dias
+    //secure: true,
     httpOnly: true
   }
-}))
+}
+
+//se for ambiente de produção, habilita confiança no primeiro proxy e 
+//cookies seguros
+if(app.get('env') === 'production'){
+  app.set('trusty proxy', 1)
+  sessionConfig.cookie.secure = true
+}
+
+app.use(expressSession(sessionConfig))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

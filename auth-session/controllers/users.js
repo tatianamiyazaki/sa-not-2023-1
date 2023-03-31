@@ -36,46 +36,56 @@ controller.create = async(req, res) => {
     catch(error){
         console.error(error)
     }
+}
 
 
-    controller.auth = async (req, res) => {
-        try{
-            const result = conn.query(`
-                select * from users
-                where username = $1 and password = $2
-            `[
-                req.body.username,
-                req.body.password
+controller.auth = async (req, res) => {
+    try{
+        const result = await conn.query(`
+            select * from users
+            where username = $1
+        `, [
+            req.body.username
 
-            ])
-            console.log({resultado: result.rows})
+        ])
+        console.log({resultado: result.rows})
 
-            const user = result.rows[0] //conferir
+        const user = result.rows[0] //conferir
 
-            const passwordOK = await bcrypt.compare(req.body.password, user.password)
+        const passwordOK = result.rowCount === 1 && 
+            await bcrypt.compare(req.body.password, user?.password)
 
-            if(passwordOK){
-                //1) verificar se uma sessão foi criada
-                //2) redirecionar para uma view com mensagem de sucesso
-            }
-            else{
-                //1) destruir sessão, se houver
-                //2) redirecionar para uma view com mensagem de erro
-            }
+        if(passwordOK){
+            //guardar informações na sessão
+            req.session.isLoggedIn = true
+            req.session.username = user.username
+
+            res.render('feedback', {
+                level: 'success', 
+                message: 'Login efetuado com sucesso. Usuário autenticado.',
+                redirectUrl: req.session.redirectUrl,
+            })
         }
-        catch(error){
-            console.error(error)
+        else{
+            res.render('user_login',{
+                message: 'Usuário ou senha inválidos.'
+            })
         }
     }
+    catch(error){
+        console.error(error)
+    }
+}
 
-    controller.formLogin = (req, res) =>{
+    controller.formLogin = (req, res) => {
         res.render ('user_login', {
             title: 'Fazer login'
         })
     }
     
-
-  
+controller.logout = (req, res) => {
+    req.session.destroy()
+    res.redirect('/users/login')
 }
 
 module.exports = controller
