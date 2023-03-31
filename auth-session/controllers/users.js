@@ -63,7 +63,7 @@ controller.auth = async (req, res) => {
             res.render('feedback', {
                 level: 'success', 
                 message: 'Login efetuado com sucesso. Usuário autenticado.',
-                redirectUrl: req.session.redirectUrl,
+                redirectUrl: req.session.redirectUrl || '/'
             })
         }
         else{
